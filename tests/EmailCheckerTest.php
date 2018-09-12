@@ -81,7 +81,7 @@ class EmailCheckerTest extends \PHPUnit\Framework\TestCase
         } catch (CheckerException $e) {
             $hasError = true;
         }
-        
+
         $this->assertTrue($hasError);
     }
 
