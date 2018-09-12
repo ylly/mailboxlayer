@@ -60,8 +60,6 @@ class EmailCheckerTest extends \PHPUnit\Framework\TestCase
      */
     public function testExceptionEmailChecker()
     {
-        $this->setExpectedException('\YllyMailboxLayer\Exception\CheckerException');
-
         /** @var CheckClient|\PHPUnit_Framework_MockObject_MockObject $stub */
         $stub = $this
             ->getMockBuilder('YllyMailboxLayer\Client\Check\CheckClient')
@@ -76,7 +74,15 @@ class EmailCheckerTest extends \PHPUnit\Framework\TestCase
 
         $mailChecker = new EmailChecker($stub);
 
-        $mailChecker->checkEmail('jean@ylly.fr');
+        $hasError = false;
+
+        try {
+            $mailChecker->checkEmail('jean@ylly.fr');
+        } catch (CheckerException $e) {
+            $hasError = true;
+        }
+        
+        $this->assertTrue($hasError);
     }
 
     /**
@@ -94,10 +100,14 @@ class EmailCheckerTest extends \PHPUnit\Framework\TestCase
 
         $mailChecker = new EmailChecker($stub);
 
+        $errorMessage = null;
+
         try {
             $mailChecker->checkEmail('jean@ylly.fr');
         } catch (CheckerException $e) {
-            $this->assertEquals($e->getMessage(), 'Error HTTP 400');
+            $errorMessage = $e->getMessage();
         }
+
+        $this->assertEquals($errorMessage, 'Error HTTP 400');
     }
 }
