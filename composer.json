@@ -1,0 +1,26 @@
+{
+    "name": "ylly/mailboxLayer",
+    "description": "PHP Library for mailboxLayer by apiLayer",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Corentin HUIBANT",
+            "email": "corentin@ylly.fr"
+        }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "symfony/yaml": "~2.2|~3.0",
+        "ext-json": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "YllyMailboxLayer\\": "src/",
+            "YllyMailboxLayerTest\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8"
+    }
+}
