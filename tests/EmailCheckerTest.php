@@ -75,7 +75,7 @@ class EmailCheckerTest extends \PHPUnit\Framework\TestCase
         $mailChecker = new EmailChecker($stub);
 
         $hasError = false;
-
+        
         try {
             $mailChecker->checkEmail('jean@ylly.fr');
         } catch (CheckerException $e) {
@@ -101,7 +101,7 @@ class EmailCheckerTest extends \PHPUnit\Framework\TestCase
         $mailChecker = new EmailChecker($stub);
 
         $errorMessage = null;
-
+        
         try {
             $mailChecker->checkEmail('jean@ylly.fr');
         } catch (CheckerException $e) {
